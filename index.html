@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VELORA GARDENS — Премиальный жилой комплекс</title>
 <meta name="description" content="ЖК VELORA GARDENS: современная архитектура, озеленённые дворы и комфортные квартиры рядом с парком.">
+<meta name="theme-color" content="#FDFCF8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%236B705C'/%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-family='Montserrat,Arial,sans-serif' font-size='60' font-weight='700' fill='%23FDFCF8'%3EV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -25,10 +27,12 @@ p{margin:0 0 1em}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:3px solid var(--olive);outline-offset:3px}
+.hero :focus-visible, footer :focus-visible{outline-color:#fff}
 .container{width:min(1160px,100% - 40px);margin-inline:auto}
 section{padding:72px 0}
 .section-title{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:600}
 .lead{color:var(--gray-text);max-width:60ch}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ===== Кнопки ===== */
 .btn{display:inline-block;padding:14px 28px;border:0;border-radius:var(--radius);background:var(--olive);color:#fff;
@@ -53,14 +57,14 @@ nav a:hover{color:var(--olive)}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 /* мобильное меню */
 nav{position:absolute;top:var(--header-h);left:0;right:0;background:var(--milk);border-bottom:1px solid var(--sand);
-  max-height:0;overflow:hidden;transition:max-height .4s ease}
-nav.open{max-height:320px}
+  max-height:0;overflow:hidden;visibility:hidden;transition:max-height .4s ease,visibility 0s .4s}
+nav.open{max-height:320px;visibility:visible;transition-delay:0s}
 nav ul{flex-direction:column;gap:0;padding:8px 20px 20px}
 nav li a{display:block;padding:14px 0;border-bottom:1px solid var(--sand)}
 
 /* ===== Hero ===== */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:calc(var(--header-h) + 40px) 0 72px;color:#fff;background:#E6DCC3;overflow:hidden}
-.hero-art{position:absolute;inset:0;width:100%;height:100%}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;padding:calc(var(--header-h) + 40px) 0 72px;color:#fff;background:#3a3d33;overflow:hidden}
+.hero-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(44,44,44,.15),rgba(44,44,44,.72))}
 .hero .container{position:relative;z-index:1}
 .hero h1{font-size:clamp(2.2rem,7vw,4.6rem);font-weight:700;max-width:14ch}
@@ -87,7 +91,7 @@ nav li a{display:block;padding:14px 0;border-bottom:1px solid var(--sand)}
 
 /* Иллюстрации разделов */
 .about-art{margin:32px 0 0;border-radius:var(--radius);overflow:hidden}
-.about-art svg{display:block;width:100%;aspect-ratio:29/16}
+.about-art img{display:block;width:100%;aspect-ratio:29/16;object-fit:cover}
 .form-art{display:block;margin:0 auto 20px;width:120px;height:auto}
 
 /* ===== Планировки ===== */
@@ -97,8 +101,6 @@ nav li a{display:block;padding:14px 0;border-bottom:1px solid var(--sand)}
 .filter-button[aria-pressed="true"]{background:var(--olive);color:#fff}
 .card.hidden{display:none}
 .card-img{overflow:hidden}
-.card-img img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s ease}
-.card:hover .card-img img{transform:scale(1.06)}
 /* SVG-планировки квартир */
 .plan{display:block;width:100%;aspect-ratio:4/3;background:#F6F2E6;transition:transform .6s ease}
 .card:hover .card-img .plan{transform:scale(1.06)}
@@ -108,8 +110,8 @@ nav li a{display:block;padding:14px 0;border-bottom:1px solid var(--sand)}
 .plan .gap{stroke:#FDFCF8;stroke-width:6}
 .plan .fur{fill:#fff;stroke:#8C8C8C;stroke-width:1.5}
 .plan .bal{fill:#EDE6D2;stroke:#2C2C2C;stroke-width:2;stroke-dasharray:5 3}
-.plan text{font:500 12px Inter,sans-serif;fill:#2C2C2C;text-anchor:middle}
-.plan .tot{font:700 14px Montserrat,sans-serif}
+.plan text{font:500 15px Inter,sans-serif;fill:#2C2C2C;text-anchor:middle}
+.plan .tot{font:700 17px Montserrat,sans-serif}
 
 .card-body{padding:24px}
 .card h3{font-size:1.3rem;margin-bottom:.2em}
@@ -147,10 +149,11 @@ footer a:hover{color:var(--sand)}
 .copy{margin:32px 0 0;padding-top:20px;border-top:1px solid #4a4a4a;font-size:.9rem;color:#C9C5B8}
 
 /* ===== Анимация появления ===== */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1;transform:none}
-.cards .card.reveal{transition:opacity .35s ease,transform .35s ease}
-.cards .card.filter-enter{opacity:0;transform:translateY(12px)}
+.reveal{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.js .reveal.visible{opacity:1;transform:none}
+.js .cards .card.reveal{transition:opacity .35s ease,transform .35s ease}
+.js .cards .card.filter-enter{opacity:0;transform:translateY(12px)}
 
 /* ===== Планшет и десктоп ===== */
 @media(min-width:768px){
@@ -167,7 +170,7 @@ footer a:hover{color:var(--sand)}
 }
 @media(min-width:960px){
   .burger{display:none}
-  nav{position:static;max-height:none;overflow:visible;border:0;background:none}
+  nav{position:static;max-height:none;overflow:visible;border:0;background:none;visibility:visible}
   nav ul{flex-direction:row;gap:32px;padding:0}
   nav li a{padding:0;border:0}
   .header-cta{display:inline-block}
@@ -175,32 +178,17 @@ footer a:hover{color:var(--sand)}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition-duration:.01ms!important}
-  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none}
 }
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
-<!-- Общие SVG-элементы: деревья, кусты, сцена фасада (используются в Hero и «О проекте») -->
+<!-- Общие SVG-элементы: дерево (используется на карте) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F0E1"/><stop offset="1" stop-color="#E6DCC3"/></linearGradient>
-<pattern id="win" width="70" height="110" patternUnits="userSpaceOnUse"><rect x="14" y="20" width="42" height="64" rx="3" fill="#8f9886"/><rect x="14" y="20" width="42" height="22" rx="3" fill="#aab2a0"/><rect x="8" y="94" width="54" height="5" fill="#cfc5a9"/></pattern>
 <symbol id="tree" viewBox="0 0 60 100"><rect x="28" y="60" width="4" height="40" fill="#5b4f3a"/><ellipse cx="30" cy="38" rx="26" ry="36" fill="#6B705C"/><ellipse cx="22" cy="30" rx="12" ry="18" fill="#7d836c"/></symbol>
-<symbol id="bush" viewBox="0 0 60 30"><ellipse cx="30" cy="20" rx="28" ry="12" fill="#565A49"/><ellipse cx="18" cy="14" rx="14" ry="10" fill="#6B705C"/></symbol>
-<g id="scene">
-<rect width="1600" height="900" fill="url(#sky)"/><circle cx="1280" cy="180" r="90" fill="#FDFCF8" opacity=".75"/>
-<path d="M0 640Q300 520 600 620T1200 600T1600 560V900H0Z" fill="#c7c9b4"/>
-<rect x="280" y="330" width="350" height="440" fill="#F4EFE0"/><rect x="280" y="330" width="350" height="440" fill="url(#win)"/>
-<rect x="630" y="220" width="420" height="550" fill="#FDFCF8"/><rect x="630" y="220" width="420" height="550" fill="url(#win)"/>
-<rect x="1050" y="440" width="350" height="330" fill="#E6DCC3"/><rect x="1050" y="440" width="350" height="330" fill="url(#win)"/>
-<rect x="270" y="322" width="370" height="10" fill="#2C2C2C"/><rect x="620" y="212" width="440" height="10" fill="#2C2C2C"/><rect x="1040" y="432" width="370" height="10" fill="#2C2C2C"/>
-<rect x="630" y="440" width="420" height="10" fill="#9a8a68"/><use href="#bush" x="660" y="410" width="120" height="60"/><use href="#bush" x="900" y="410" width="120" height="60"/>
-<rect x="770" y="680" width="110" height="90" fill="#6B705C"/>
-<rect y="770" width="1600" height="130" fill="#7d836c"/><path d="M700 770H900L1100 900H500Z" fill="#E6DCC3"/>
-<use href="#tree" x="120" y="520" width="150" height="250"/><use href="#tree" x="1400" y="500" width="170" height="283"/>
-<use href="#tree" x="520" y="610" width="100" height="167"/><use href="#tree" x="1000" y="620" width="100" height="167"/>
-<use href="#bush" x="300" y="715" width="160" height="80"/><use href="#bush" x="1150" y="715" width="180" height="90"/><use href="#bush" x="560" y="735" width="120" height="60"/>
-</g></defs></svg>
+</defs></svg>
 
 <!-- ===== Шапка ===== -->
 <header>
@@ -214,7 +202,7 @@ footer a:hover{color:var(--sand)}
         <li><a href="#contacts">Контакты</a></li>
       </ul>
     </nav>
-    <a href="#contacts" class="btn btn-outline header-cta">Заказать звонок</a>
+    <a href="#contacts" class="btn btn-outline header-cta">Записаться на просмотр</a>
     <button class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -222,7 +210,7 @@ footer a:hover{color:var(--sand)}
 <main id="top">
   <!-- ===== Главный экран ===== -->
   <section class="hero" aria-labelledby="hero-title">
-    <svg class="hero-art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Современный жилой комплекс с террасами и озеленением"><use href="#scene"/></svg>
+    <img class="hero-art" src="images/hero.jpg" alt="Современный жилой комплекс с террасами и озеленением" fetchpriority="high" width="1600" height="900">
     <div class="container">
       <h1 id="hero-title">VELORA GARDENS: Искусство жить гармонично</h1>
       <p>Премиальный жилой комплекс для тех, кто ценит комфорт и природу</p>
@@ -236,7 +224,7 @@ footer a:hover{color:var(--sand)}
       <div class="reveal">
         <h2 class="section-title">Дом, в котором тихо и светло</h2>
         <p class="lead">VELORA GARDENS — это три невысоких корпуса вокруг общего сада. Просторные террасы, панорамное остекление и двор без машин создают ощущение загородной жизни в нескольких минутах от центра.</p>
-        <figure class="about-art"><svg viewBox="260 190 1160 640" role="img" aria-label="Корпуса комплекса с зелёными террасами и входной группой"><use href="#scene"/></svg></figure>
+        <figure class="about-art"><img src="images/about.jpg" alt="Корпуса комплекса с зелёными террасами и входной группой" loading="lazy" decoding="async" width="1160" height="636"></figure>
       </div>
       <div class="features">
         <div class="feature reveal">
@@ -260,40 +248,10 @@ footer a:hover{color:var(--sand)}
     <div class="container">
       <h2 class="section-title reveal" id="gallery-title">Галерея</h2>
       <div class="gallery-grid reveal">
-        <figure class="gallery-item wide tall"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Зелёный двор жилого комплекса с дорожками и скамейками">
-<rect width="600" height="340" fill="url(#sky)"/>
-<rect x="70" y="110" width="140" height="220" fill="#FDFCF8"/><rect x="70" y="110" width="140" height="220" fill="url(#win)"/>
-<rect x="420" y="220" width="140" height="110" fill="#F4EFE0"/><rect x="420" y="220" width="140" height="110" fill="url(#win)"/>
-<rect y="330" width="600" height="270" fill="#7d836c"/><path d="M220 600C260 480 340 440 330 330H390C410 450 470 500 560 600Z" fill="#E6DCC3"/>
-<use href="#tree" x="10" y="250" width="150" height="250"/><use href="#tree" x="440" y="230" width="170" height="283"/><use href="#tree" x="190" y="300" width="80" height="133"/>
-<use href="#bush" x="30" y="470" width="140" height="70"/><use href="#bush" x="430" y="500" width="120" height="60"/>
-<rect x="100" y="520" width="110" height="10" fill="#8a7a5a"/><rect x="108" y="530" width="6" height="22" fill="#2C2C2C"/><rect x="196" y="530" width="6" height="22" fill="#2C2C2C"/>
-<rect x="298" y="370" width="4" height="100" fill="#2C2C2C"/><circle cx="300" cy="366" r="10" fill="#FDFCF8"/></svg><figcaption>Двор</figcaption></figure>
-        <figure class="gallery-item"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Светлый интерьер гостиной в натуральных тонах">
-<rect width="600" height="420" fill="#E6DCC3"/><rect y="400" width="600" height="200" fill="#C9B48C"/>
-<rect x="50" y="50" width="190" height="250" fill="#FDFCF8"/><rect x="60" y="60" width="170" height="230" fill="url(#sky)"/><use href="#tree" x="90" y="130" width="96" height="160"/><rect x="141" y="60" width="8" height="230" fill="#FDFCF8"/>
-<rect x="300" y="100" width="130" height="95" fill="#FDFCF8" stroke="#2C2C2C" stroke-width="4"/><circle cx="345" cy="145" r="24" fill="#6B705C"/><rect x="375" y="125" width="42" height="56" fill="#C9B48C"/>
-<ellipse cx="380" cy="500" rx="210" ry="62" fill="#FDFCF8"/>
-<rect x="260" y="250" width="300" height="80" rx="20" fill="#565A49"/><rect x="250" y="290" width="320" height="100" rx="20" fill="#6B705C"/><rect x="280" y="300" width="120" height="50" rx="10" fill="#7d836c"/><rect x="420" y="300" width="120" height="50" rx="10" fill="#7d836c"/>
-<rect x="320" y="470" width="120" height="14" rx="4" fill="#2C2C2C"/><rect x="332" y="484" width="6" height="26" fill="#2C2C2C"/><rect x="422" y="484" width="6" height="26" fill="#2C2C2C"/>
-<rect x="578" y="160" width="4" height="240" fill="#2C2C2C"/><path d="M560 160h40l-8 40h-24z" fill="#FDFCF8"/>
-<rect x="30" y="330" width="46" height="70" fill="#8a7a5a"/><use href="#tree" x="20" y="230" width="66" height="110"/></svg><figcaption>Интерьеры</figcaption></figure>
-        <figure class="gallery-item"><svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Терраса с растениями и видом на сад">
-<rect width="600" height="420" fill="url(#sky)"/><path d="M0 300Q150 240 300 290T600 270V420H0Z" fill="#c7c9b4"/>
-<use href="#tree" x="40" y="200" width="90" height="150"/><use href="#tree" x="200" y="220" width="70" height="117"/><use href="#tree" x="440" y="190" width="100" height="167"/>
-<rect y="420" width="600" height="180" fill="#B9A47F"/><g stroke="#a08c68" stroke-width="3"><path d="M0 470H600M0 520H600M0 570H600"/></g>
-<line x1="0" y1="375" x2="600" y2="375" stroke="#2C2C2C" stroke-width="90" stroke-dasharray="3 22"/><rect y="328" width="600" height="8" fill="#2C2C2C"/><rect y="416" width="600" height="8" fill="#2C2C2C"/>
-<rect x="30" y="500" width="60" height="70" fill="#8a7a5a"/><use href="#tree" x="20" y="390" width="80" height="133"/>
-<rect x="500" y="520" width="60" height="50" fill="#8a7a5a"/><use href="#bush" x="490" y="480" width="80" height="40"/>
-<ellipse cx="300" cy="480" rx="90" ry="18" fill="#FDFCF8"/><rect x="296" y="480" width="8" height="80" fill="#2C2C2C"/>
-<rect x="160" y="470" width="60" height="12" rx="3" fill="#6B705C"/><rect x="160" y="440" width="10" height="40" fill="#6B705C"/><rect x="380" y="470" width="60" height="12" rx="3" fill="#6B705C"/><rect x="430" y="440" width="10" height="40" fill="#6B705C"/></svg><figcaption>Террасы</figcaption></figure>
-        <figure class="gallery-item wide"><svg viewBox="0 0 900 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Панорамные окна от пола до потолка с видом на сад">
-<rect width="900" height="450" fill="#E6DCC3"/><rect x="120" y="30" width="660" height="320" fill="url(#sky)"/>
-<path d="M120 280Q300 200 450 260T780 230V350H120Z" fill="#c7c9b4"/><use href="#tree" x="170" y="190" width="90" height="150"/><use href="#tree" x="620" y="170" width="110" height="183"/><use href="#tree" x="470" y="230" width="60" height="100"/>
-<rect x="120" y="30" width="660" height="320" fill="none" stroke="#2C2C2C" stroke-width="8"/><rect x="336" y="30" width="8" height="320" fill="#2C2C2C"/><rect x="556" y="30" width="8" height="320" fill="#2C2C2C"/>
-<rect y="350" width="900" height="100" fill="#C9B48C"/><rect x="50" y="20" width="70" height="330" fill="#FDFCF8"/><rect x="780" y="20" width="70" height="330" fill="#FDFCF8"/>
-<rect x="390" y="270" width="150" height="70" rx="16" fill="#6B705C"/><rect x="400" y="240" width="130" height="50" rx="16" fill="#565A49"/><ellipse cx="465" cy="410" rx="160" ry="24" fill="#FDFCF8"/>
-<rect x="580" y="300" width="60" height="6" fill="#2C2C2C"/><rect x="606" y="306" width="6" height="44" fill="#2C2C2C"/></svg><figcaption>Панорамные окна</figcaption></figure>
+        <figure class="gallery-item wide tall"><img src="images/gallery-courtyard.jpg" alt="Зелёный двор жилого комплекса с дорожками и скамейками" loading="lazy" decoding="async" width="800" height="800"><figcaption>Двор</figcaption></figure>
+        <figure class="gallery-item"><img src="images/gallery-living.jpg" alt="Светлый интерьер гостиной в натуральных тонах" loading="lazy" decoding="async" width="800" height="800"><figcaption>Интерьеры</figcaption></figure>
+        <figure class="gallery-item"><img src="images/gallery-terrace.jpg" alt="Терраса с растениями и видом на сад" loading="lazy" decoding="async" width="800" height="800"><figcaption>Террасы</figcaption></figure>
+        <figure class="gallery-item wide"><img src="images/gallery-windows.jpg" alt="Панорамные окна от пола до потолка с видом на сад" loading="lazy" decoding="async" width="800" height="800"><figcaption>Панорамные окна</figcaption></figure>
       </div>
     </div>
   </section>
@@ -309,6 +267,7 @@ footer a:hover{color:var(--sand)}
         <button type="button" class="btn btn-outline filter-button" data-filter="1" aria-pressed="false">1-комнатные</button>
         <button type="button" class="btn btn-outline filter-button" data-filter="2" aria-pressed="false">2-комнатные</button>
       </div>
+      <p class="sr-only" aria-live="polite" id="filter-count"></p>
       <div class="cards">
         <article class="card reveal" data-rooms="studio">
           <div class="card-img"><svg class="plan" viewBox="0 0 400 300" role="img" aria-label="Планировка студии 32 м²: санузел, прихожая, жилая зона с кухней и балкон">
@@ -325,7 +284,7 @@ footer a:hover{color:var(--sand)}
 <rect class="fur" x="150" y="140" width="70" height="30" rx="6"/><rect class="fur" x="90" y="215" width="34" height="30"/>
 <text x="85" y="82">Санузел</text><text x="245" y="76">Кухня</text><text x="190" y="205">Жилая зона</text><text x="85" y="150">Прихожая</text><text class="tot" x="190" y="238">32 м²</text>
 </svg></div>
-          <div class="card-body"><h3>Студия</h3><p class="area">32 м²</p><p class="price">от 6,2 млн ₽</p><a href="#contacts" class="btn btn-outline">Узнать подробнее</a></div>
+          <div class="card-body"><h3>Студия</h3><p class="area">32 м²</p><p class="price">от 6,2 млн ₽</p><a href="#contacts" class="btn btn-outline" aria-label="Узнать подробнее: студия 32 м²">Узнать подробнее</a></div>
         </article>
         <article class="card reveal" data-rooms="1">
           <div class="card-img"><svg class="plan" viewBox="0 0 400 300" role="img" aria-label="Планировка однокомнатной квартиры 44 м²: спальня, гостиная-кухня, санузел, прихожая и балкон">
@@ -342,7 +301,7 @@ footer a:hover{color:var(--sand)}
 <rect class="fur" x="210" y="36" width="150" height="16"/><circle class="fur" cx="320" cy="140" r="22"/><rect class="fur" x="225" y="200" width="90" height="34" rx="6"/>
 <text x="115" y="160">Спальня</text><text x="270" y="100">Гостиная-кухня</text><text x="70" y="228">Санузел</text><text x="155" y="225">Прихожая</text><text class="tot" x="300" y="258">44 м²</text>
 </svg></div>
-          <div class="card-body"><h3>1-комнатная</h3><p class="area">44 м²</p><p class="price">от 8,4 млн ₽</p><a href="#contacts" class="btn btn-outline">Узнать подробнее</a></div>
+          <div class="card-body"><h3>1-комнатная</h3><p class="area">44 м²</p><p class="price">от 8,4 млн ₽</p><a href="#contacts" class="btn btn-outline" aria-label="Узнать подробнее: 1-комнатная 44 м²">Узнать подробнее</a></div>
         </article>
         <article class="card reveal" data-rooms="2">
           <div class="card-img"><svg class="plan" viewBox="0 0 400 300" role="img" aria-label="Планировка двухкомнатной квартиры 68 м²: две спальни, гостиная-кухня, санузел, прихожая и балкон">
@@ -358,9 +317,9 @@ footer a:hover{color:var(--sand)}
 <rect class="fur" x="45" y="45" width="90" height="75" rx="6"/><rect class="fur" x="45" y="195" width="80" height="64" rx="6"/>
 <rect class="fur" x="170" y="26" width="200" height="16"/><rect class="fur" x="190" y="95" width="70" height="40" rx="6"/><rect class="fur" x="290" y="120" width="80" height="34" rx="6"/>
 <rect class="fur" x="266" y="176" width="64" height="26" rx="10"/><rect class="fur" x="340" y="178" width="32" height="18" rx="4"/><circle class="fur" cx="360" cy="248" r="8"/>
-<text x="90" y="140">Спальня</text><text x="90" y="178">Спальня 2</text><text x="275" y="82">Гостиная-кухня</text><text x="210" y="205">Прихожая</text><text x="305" y="225">Санузел</text><text class="tot" x="210" y="250">68 м²</text>
+<text x="90" y="140">Спальня 1</text><text x="90" y="178">Спальня 2</text><text x="275" y="82">Гостиная-кухня</text><text x="210" y="205">Прихожая</text><text x="305" y="225">Санузел</text><text class="tot" x="210" y="250">68 м²</text>
 </g></svg></div>
-          <div class="card-body"><h3>2-комнатная</h3><p class="area">68 м²</p><p class="price">от 12,9 млн ₽</p><a href="#contacts" class="btn btn-outline">Узнать подробнее</a></div>
+          <div class="card-body"><h3>2-комнатная</h3><p class="area">68 м²</p><p class="price">от 12,9 млн ₽</p><a href="#contacts" class="btn btn-outline" aria-label="Узнать подробнее: 2-комнатная 68 м²">Узнать подробнее</a></div>
         </article>
       </div>
     </div>
@@ -377,7 +336,7 @@ footer a:hover{color:var(--sand)}
 <path d="M200 260L470 200M200 260L610 330" stroke="#6B705C" stroke-width="3" stroke-dasharray="8 6" fill="none"/>
 <rect x="330" y="215" width="130" height="28" rx="8" fill="#FDFCF8"/><text x="395" y="234" text-anchor="middle" fill="#2C2C2C">5 мин пешком</text>
 <text x="615" y="170" text-anchor="middle" fill="#2C2C2C">Парк</text>
-<circle cx="620" cy="330" r="18" fill="#2C2C2C"/><text x="620" y="336" text-anchor="middle" fill="#fff" font-weight="700">М</text><text x="620" y="368" text-anchor="middle" fill="#2C2C2C">Метро</text>
+<circle cx="620" cy="330" r="18" fill="#2C2C2C"/><text x="620" y="336" text-anchor="middle" fill="#fff" font-weight="700">М</text><text x="620" y="368" text-anchor="middle" fill="#2C2C2C">Метро</text><rect x="555" y="288" width="130" height="28" rx="8" fill="#FDFCF8"/><text x="620" y="307" text-anchor="middle" fill="#2C2C2C">10 мин</text>
 <circle cx="200" cy="260" r="22" fill="#6B705C" stroke="#fff" stroke-width="5"/><circle cx="200" cy="260" r="7" fill="#fff"/>
 <rect x="110" y="196" width="180" height="34" rx="8" fill="#2C2C2C"/><text x="200" y="218" text-anchor="middle" fill="#fff">VELORA GARDENS</text></svg></div>
       <div class="reveal">
@@ -399,10 +358,10 @@ footer a:hover{color:var(--sand)}
       <h2 class="section-title">Запишитесь на просмотр</h2>
       <p class="lead" style="margin-inline:auto">Оставьте имя и телефон — менеджер перезвонит в течение рабочего дня.</p>
       <form id="lead-form" novalidate>
-        <label>Имя<input type="text" name="name" autocomplete="given-name" required></label>
-        <label>Телефон<input type="tel" name="phone" autocomplete="tel" inputmode="numeric" maxlength="18" placeholder="+7 (XXX) XXX-XX-XX" required></label>
+        <label>Имя<input type="text" name="name" autocomplete="given-name" required aria-describedby="form-status"></label>
+        <label>Телефон<input type="tel" name="phone" autocomplete="tel" inputmode="numeric" maxlength="18" placeholder="+7 (XXX) XXX-XX-XX" required aria-describedby="form-status"></label>
         <button type="submit" class="btn">Отправить</button>
-        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         <p class="form-note">Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.</p>
       </form>
     </div>
@@ -431,14 +390,11 @@ function setMenu(open){
 }
 burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
 menu.addEventListener('click', e => { if (e.target.tagName === 'A') setMenu(false); });
-
-/* Плавный скролл по якорям (CSS scroll-behavior + запасной вариант) */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    const target = id.length > 1 && document.querySelector(id);
-    if (target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
-  });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menu.classList.contains('open')) {
+    setMenu(false);
+    burger.focus();
+  }
 });
 
 /* Появление блоков при прокрутке */
@@ -459,15 +415,20 @@ filterButtons.forEach(button => {
       filterButton.setAttribute('aria-pressed', String(filterButton === button));
     });
 
+let shownCount = 0;
     apartmentCards.forEach(card => {
       const matches = filter === 'all' || card.dataset.rooms === filter;
       card.classList.toggle('hidden', !matches);
 
       if (matches) {
+        shownCount++;
         card.classList.add('visible', 'filter-enter');
-        requestAnimationFrame(() => card.classList.remove('filter-enter'));
+        void card.offsetWidth;
+        card.classList.remove('filter-enter');
       }
     });
+    const filterCount = document.getElementById('filter-count');
+    if (filterCount) filterCount.textContent = 'Показано планировок: ' + shownCount;
   });
 });
 
@@ -547,6 +508,7 @@ leadForm.addEventListener('submit', e => {
     formStatus.classList.remove('is-success');
     formStatus.classList.add('is-error');
     formStatus.textContent = 'Пожалуйста, ' + errors.join(' и ') + '.';
+    (!nameIsValid ? nameInput : phoneInput).focus();
     return;
   }
 
